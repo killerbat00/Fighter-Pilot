@@ -1,0 +1,9 @@
+Author: Brian Morrow
+
+An accessible first-person shooting game developed for UNC's Maze Day using Python and PyGame.
+
+TO-DO:
+Add Proper commenting and documentation
+Add stereo sound
+Finalize Graphics
+Implement Joystick Control
