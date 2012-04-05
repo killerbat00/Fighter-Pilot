@@ -1,4 +1,6 @@
 Author: Brian Morrow
+Note:
+Ensure that all graphics are saved in a folder titled "Graphics" in the same directory as the .py files.
 
 An accessible first-person shooting game developed for UNC's Maze Day using Python and PyGame.
 
