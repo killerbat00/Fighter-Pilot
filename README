@@ -4,7 +4,11 @@ Ensure that all graphics are saved in a folder titled "Graphics" in the same dir
 
 An accessible first-person shooting game developed for UNC's Maze Day using Python and PyGame.
 
+4/6/2012
+Added enemy scaling.
+
 TO-DO:
+Fix scaling so enemies only scale and come closer when they are in the viewport of the screen.
 Add Proper commenting and documentation
 Add stereo sound
 Finalize Graphics
