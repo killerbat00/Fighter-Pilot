@@ -19,7 +19,7 @@ def runGame():
 	pygame.init()
 	screen = pygame.display.set_mode((SCREEN_SIZE), 0, 32)
 	screen_rect = pygame.Rect(0,0,1280,800)
-	bullet = pygame.transform.scale((pygame.image.load(bullet_image).convert_alpha()), (20, 20))
+	bullet = pygame.transform.scale((pygame.image.load(bullet_image).convert_alpha()), (10, 15))
 	bullets = []
 	for x in range(50):
 		bullets.append(bullet)
@@ -66,15 +66,18 @@ def runGame():
 
 		#draws enemy 
 		if enemy != None:
-			enemy.sizex += 1
-			enemy.sizey += 1
 			enemy_rect = enemy.draw(screen, (enemy.x, enemy.y), enemy.sizex, enemy.sizey)
+			if screen_rect.contains(enemy_rect):
+				enemy.sizex += 1
+				enemy.sizey += 1
+				#enemy_rect = enemy.draw(screen, (enemy.x, enemy.y), enemy.sizex, enemy.sizey)
+
 			
 
 		#Creates, scales and fires a bullet, ensures the bullets list remains full. 
 		if firedBullet != None:
-			scaledBullet = pygame.transform.scale(firedBullet, (bulletsizex, bulletsizey))
-			#scaledBullet = firedBullet
+			#scaledBullet = pygame.transform.scale(firedBullet, (bulletsizex, bulletsizey))
+			scaledBullet = firedBullet
 			bullet_rect = screen.blit(scaledBullet, (SCREEN_SIZE[0]/2-10, bulletposy))
 			bulletposy -= 30
 			bulletsizex -=1
