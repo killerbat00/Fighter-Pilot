@@ -65,17 +65,22 @@ class Background():
 class Enemy:
 	def __init__(self):
 		self.enemy = pygame.image.load(enemy_image).convert_alpha()
-		self.enemy = pygame.transform.scale(self.enemy, (100, 100))
+		self.sizex = 50
+		self.sizey = 50
+		self.enemy = pygame.transform.scale(self.enemy, (self.sizex, self.sizey))
 		self.rect = self.enemy.get_rect()
 		self.x = randint(-1280,1280)
 		self.y = SCREEN_SIZE[1]/2
 		self.health = randint(5, 15)
 
-	def draw(self, screen, (x, y)):
-		screen.blit(self.enemy, (x, y))
-
-	def get_rect(self):
-		return self.enemy.get_rect()
+	def draw(self, screen, (x, y), sizex, sizey):
+		if sizex >= 200:
+			sizex = 200
+			sizey = 200
+		scaledenemy = pygame.transform.scale(self.enemy, (sizex, sizey))
+		screen.blit(scaledenemy, (x, y))
+		rect = pygame.Rect(x, y, sizex, sizey)
+		return rect
 
 	def get_location(self):
 		return (self.x, self.y)
