@@ -4,14 +4,14 @@ from pygame.locals import *
 from sys import exit
 
 screen = pygame.display.set_mode((SCREEN_SIZE), 0, 32)
-pygame.display.set_caption("Fighter Pilot V0.2")
+pygame.display.set_caption("Fighter Pilot V0.3")
 icon = pygame.transform.scale(pygame.image.load(icon_image), (32, 32))
 pygame.display.set_icon(icon)
 
 def showstartscreen():
 	pygame.init()
 	titleFont = pygame.font.Font('freesansbold.ttf', 100)
-	titleSurf1 = titleFont.render('Version 0.2!ish', True, (40,40,40)).convert_alpha()
+	titleSurf1 = titleFont.render('Version 0.3', True, (40,40,40)).convert_alpha()
 	titleFont = pygame.font.Font('freesansbold.ttf', 30)
 	titleSurf2 = titleFont.render('Better title screen coming soon!', True, (255, 69, 0)).convert_alpha()
 	center = titleSurf1.get_rect().center
@@ -36,6 +36,23 @@ def showstartscreen():
 		pygame.display.update()
 		clock.tick(FPS)
 
+def gameOver():
+	pygame.init()
+	titleFont = pygame.font.Font('freesansbold.ttf', 100)
+	titleSurf1 = titleFont.render('GAME OVER!', True, (40, 40, 40)).convert_alpha()
+	while True:
+		screen.fill((1,1,1))
+		titleRect = titleSurf1.get_rect()
+		titleRect.center = screen.get_rect().center
+		screen.blit(titleSurf1, titleRect)
+
+		drawPressKeyMsg()
+
+		if checkForKeyPresses():
+			pygame.event.get()
+			return
+		pygame.display.update()
+		clock.tick(FPS)
 
 def drawPressKeyMsg():
 	font = pygame.font.Font('freesansbold.ttf', 20)
