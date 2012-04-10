@@ -8,6 +8,9 @@ An accessible first-person shooting game developed for UNC's Maze Day using Pyth
 Added enemy scaling.
 Enemies now scale only when in the screen rect.
 
+4/9/2012
+Added a health aspect for the player, added a game over screen that initializes when player dies.
+
 TO-DO:
 *DONE*Fix scaling so enemies only scale and come closer when they are in the viewport of the screen.
 Add Proper commenting and documentation
