@@ -1,4 +1,5 @@
 Author: Brian Morrow
+
 Note:
 Ensure that all graphics are saved in a folder titled "Graphics" in the same directory as the .py files.
 
@@ -11,9 +12,18 @@ Enemies now scale only when in the screen rect.
 4/9/2012
 Added a health aspect for the player, added a game over screen that initializes when player dies.
 
+4/24/2012
+Complete Graphics overhaul, they are complete - for now.
+Sound is now implemented and stereo panning works.
+Things are commented and documented better.
+Game works with or without a joystick.
+
 TO-DO:
 *DONE*Fix scaling so enemies only scale and come closer when they are in the viewport of the screen.
-Add Proper commenting and documentation
-Add stereo sound
-Finalize Graphics
-Implement Joystick Control
+*DONE*Add Proper commenting and documentation
+*DONE*Add stereo sound
+*DONE*Finalize Graphics
+*DONE*Implement Joystick Control
+Work on explosion sprite/animation.
+Find another sound for enemy/player collisions.
+Work on enemy/player collision screen flash.
