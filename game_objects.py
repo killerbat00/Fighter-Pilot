@@ -29,8 +29,8 @@ class HeadsUpDisplay:
 		circlerect2 = pygame.Rect(0,0,170,170)
 		circlerect.center = (640,712)
 		circlerect2.center = (640, 712)
-		circle2 = pygame.draw.ellipse(screen, (139,137,137), circlerect2, 0)
-		self.circle = pygame.draw.ellipse(screen, (0,255,0), circlerect,  2)
+		circle2 = pygame.draw.ellipse(screen, (255,255,255), circlerect2, 0)
+		self.circle = pygame.draw.ellipse(screen, (0,0,0), circlerect,  2)
 		x = 82*math.sin(angle)+640
 		y = 82*math.cos(angle)+712
 		pygame.draw.line(screen, (0,255,0), (640, 712), (x, y), 2)
@@ -38,7 +38,7 @@ class HeadsUpDisplay:
 	def drawHealth(self, screen, health):
 		text = "Health"
 		font = pygame.font.Font('freesansbold.ttf', 14)
-		surf = font.render(text, True, (255,255,255))
+		surf = font.render(text, True, (255,0,255))
 		screen.blit(surf, (205, 729))
 		barRect = pygame.Rect(200, 745, 250, 50)
 		healthRect = pygame.Rect(210, 755, health - 20, 30)
@@ -55,7 +55,7 @@ class HeadsUpDisplay:
 
 class Background():
 	def __init__(self):
-		self.background = pygame.image.load(background_image_file).convert()
+		self.background = pygame.image.load(background_image_file).convert_alpha()
 		self.background_rect = self.background.get_rect()
 		self.background_y = 0
 		self.background_x = 0
@@ -71,26 +71,19 @@ class Enemy:
 	def __init__(self):
 		self.enemy = pygame.image.load(enemy_image).convert_alpha()
 		self.sizex = 50
-		self.sizey = 50
+		self.sizey = 20
 		self.enemy = pygame.transform.scale(self.enemy, (self.sizex, self.sizey))
 		self.rect = self.enemy.get_rect()
 		self.x = randint(-1280,1280)
 		self.y = SCREEN_SIZE[1]/2
-		self.health = randint(5, 15)
+		self.health = randint(3, 7)
 
 	def draw(self, screen, (x, y), sizex, sizey):
-		if sizex >= 100:
-			self.enemy = pygame.transform.scale(pygame.image.load(enemy_image).convert_alpha(), (100, 100))
+		if sizex >= 550:
+			sizex = 550
+			sizey = 180
 
-		if sizex >= 300:
-			self.enemy = pygame.transform.scale(pygame.image.load(enemy_image).convert_alpha(), (300, 300))
-			#sizex = 300
-			#sizey = 300
-
-		if sizex >= 450:
-			sizex = 450
-			sizey = 450
-		scaledenemy = pygame.transform.scale(self.enemy, (sizex, sizey))
+		scaledenemy = pygame.transform.scale(pygame.image.load(enemy_image).convert_alpha(), (sizex, sizey))
 		x -= sizex/2
 		screen.blit(scaledenemy, (x, y))
 		rect = pygame.Rect(x, y, sizex, sizey)
@@ -98,3 +91,28 @@ class Enemy:
 
 	def get_location(self):
 		return (self.x, self.y)
+
+
+##NON WORKING EXPLOSION CLASS
+class Explosion:
+	defaultlife = 12
+	animcycle = 3
+	images = []
+
+	def __init__(self, time):
+		for x in range (1,12):
+			image = pygame.image.load(os.path.join("Graphics", "Explosion%d.png") %x).convert_alpha()
+			image = pygame.transform.scale(image, (200,200))
+			self.images.append(image)
+		self.life = self.defaultlife
+		self.starttime = time
+
+	def update(self, screen, (x,y), time):
+
+		while (time - self.starttime < 2000):
+			self.image = self.images[self.life//self.animcycle%2]
+			screen.blit(self.image, (x,y))
+			break
+		#self.life = self.life - 1
+		#self.image = self.images[self.life//self.animcycle%2]
+		#screen.blit(self.image, (x, y))
